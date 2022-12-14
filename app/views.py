@@ -99,3 +99,12 @@ def model_form_upload(request):
     # return render(request, './model_form_upload.html', {
     #     'form': form
     # })
+
+
+def req_rec(request):
+    documents = Records.objects.filter(time_limit__isnull=True)
+    approved_reports = Records.objects.filter( time_limit__isnull=False)
+    pending = Records.objects.exclude( approval_rec="N")
+    pending = pending.exclude( approval_rec="Y")
+    # documents = documents.exclude( approval_rec="Y")
+    return render(request, './apna-doctor-dashboard.html', { 'documents': documents, 'approved_reports': approved_reports, 'pending': pending })
