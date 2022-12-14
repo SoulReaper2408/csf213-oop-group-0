@@ -483,16 +483,12 @@
               </nav>
               <div class="table table--no-header table--new-doctors">
                 <div class="table__body">
- 
-                  
 
+                  
+                  {% for patient in patients %}
                   <div class="table__row">
-                    <div class="table__cell">
-                      <div class="avatar-thumb avatar-thumb--table">
-                        <img src={% static "images/avatar-2.jpg"%} alt="" title="" />
-                      </div>
-                    </div>
-                    <div class="table__cell">Maya Cooper</div>
+
+                    <div class="table__cell"> {{patient.name}} </div>
                     <div class="table__cell color-blue">Gastroenterology</div>
                     <div class="table__cell">
                       <span
@@ -510,6 +506,7 @@
                       </nav>
                     </div>
                   </div>
+                  {% endfor %}
 
 
                   
