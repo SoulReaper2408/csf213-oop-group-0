@@ -20,16 +20,7 @@
   <body>
     <!-- partial:index.partial.html -->
     <div class="box-form">
-      <div class="left">
-        <div class="overlay">
-          <img src={% static "img.jpg" %} style="width: 650px; height: 250x" />
-          <h1>Medical Records.</h1>
-          <p>
-            "Medicine cure diseases, but only doctors can cure patients." -Carl
-            Jung
-          </p>
-        </div>
-      </div>
+
 
       <div class="right">
         <h5>Upload</h5>
@@ -38,26 +29,18 @@
 
         <div class="inputs">
           <h2>Enter the details and upload the document below.</h2>
-          {% comment %}
-          <input type="text" placeholder="Doctor's Name" /> {% endcomment %}
+
           <br />
-          {% comment %}
-          <form action="/action_page.php">
-            <input type="file" id="myFile" name="filename" />
-            <input type="submit" />
-          </form>
-          {% endcomment %}
+
 		  <table border ="1">
 		  {% csrf_token %} {% for choice in documents%}
 		  <tr>
 			
-            <form method ="POST" action="approved/{{ choice.id}}/">
+            <form method ="POST" action="approvedoc/{{ choice.id}}/">
 			
 			<td>{{choice.document}}</td>
-			<td>{{choice.patient.name}}</td>
-			<td>{{choice.time}}</td>
-			<td><input name="approval_doc" value="{{choice.approval_doc}}" ></input></td>
-			<td> {% csrf_token %}<button type="submit"href="approved/{{ choice.id}}"> update</button></td>
+			<td><input type = "datetime-local" name="time" value="{{choice.time_limit}}" ></input></td>
+			<td> {% csrf_token %}<button type="submit"href="approvedoc/{{ choice.id}}"> update</button></td>
 			</form>
 		</tr>
 		{% endfor %}

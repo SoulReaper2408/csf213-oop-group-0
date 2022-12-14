@@ -64,6 +64,18 @@ def approved(request,id):
     member.save()
     return HttpResponseRedirect(reverse('home'))
 
+def req_doc(request):
+    documents = Records.objects.all()
+    # documents = documents.exclude( approval_doc="Y")
+    return render(request, './req_doc.html', { 'documents': documents })
+
+def approvedoc(request,id):
+    time = request.POST['time']
+    member = Records.objects.get(id=id)
+    member.time_limit = time.upper()
+    member.save()
+    return HttpResponseRedirect(reverse('home'))
+
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
