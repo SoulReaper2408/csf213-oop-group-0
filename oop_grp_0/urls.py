@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^approve_rec/approve/(?P<id>\d+)/$', views.approve, name='approve'),
     url(r'^approve_doc/$', views.approve_doc, name='approve_doc'),
     url(r'^approve_doc/approved/(?P<id>\d+)/$', views.approved, name='approved'),
+    url(r'^req_doc/$', views.req_doc, name='req_doc'),
+    url(r'^req_doc/approvedoc/(?P<id>\d+)/$', views.approvedoc, name='approvedoc'),
 
 ]
 
