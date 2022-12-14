@@ -51,8 +51,18 @@ def approve(request,id):
     member.approval_rec = approval_rec.upper()
     member.save()
     return HttpResponseRedirect(reverse('home'))
-    # documents = Records.objects.get(id=id)
-    # return render(request, './approve_rec.html', { 'documents': documents })
+
+def approve_doc(request):
+    documents = Records.objects.exclude( approval_doc="N")
+    documents = documents.exclude( approval_doc="Y")
+    return render(request, './approve_doc.html', { 'documents': documents })
+
+def approved(request,id):
+    approval_doc = request.POST['approval_doc']
+    member = Records.objects.get(id=id)
+    member.approval_doc = approval_doc.upper()
+    member.save()
+    return HttpResponseRedirect(reverse('home'))
 
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:

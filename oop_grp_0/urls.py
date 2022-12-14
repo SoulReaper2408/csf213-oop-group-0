@@ -32,6 +32,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^approve_rec/$', views.approve_rec, name='approve_rec'),
     url(r'^approve_rec/approve/(?P<id>\d+)/$', views.approve, name='approve'),
+    url(r'^approve_doc/$', views.approve_doc, name='approve_doc'),
+    url(r'^approve_doc/approved/(?P<id>\d+)/$', views.approved, name='approved'),
 
 ]
 
