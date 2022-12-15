@@ -103,9 +103,20 @@ def model_form_upload(request):
 
 def req_rec(request):
     documents = Records.objects.filter(time_limit__isnull=True)
-    approved_reports = Records.objects.filter( time_limit__isnull=False)
+    approved_reports = Records.objects.filter( approval_doc="Y")
     pending = Records.objects.exclude( approval_rec="N")
     pending = pending.exclude( approval_rec="Y")
     patients = patient.objects.all()
     # documents = documents.exclude( approval_rec="Y")
     return render(request, './apna-doctor-dashboard.html', { 'documents': documents, 'approved_reports': approved_reports, 'pending': pending, 'patients': patients })
+
+
+def patientdb(request):
+    documents = Records.objects.filter(time_limit__isnull=False)
+    documents = documents.exclude( approval_doc="Y")
+    approved_reports = Records.objects.filter( approval_rec="Y")
+    pending = Records.objects.exclude( approval_rec="N")
+    pending = pending.exclude( approval_rec="Y")
+    patients = patient.objects.all()
+    # documents = documents.exclude( approval_rec="Y")
+    return render(request, './patient.html', { 'documents': documents, 'approved_reports': approved_reports, 'pending': pending, 'patients': patients })
